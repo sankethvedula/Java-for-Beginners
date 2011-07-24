@@ -75,33 +75,65 @@ public class StringList {
 	/**
 	 * löscht das erste Element der Liste
 	 */
-	void delFirst(){}
+	void delFirst(){
+		firstNode = firstNode.next;
+	}
 	
 	/**
 	 * löscht das letzte Element der Liste
 	 */
-	void delLast(){}
+	void delLast(){
+		StringNode current = firstNode;
+		while(current.next.next != null) {
+			current = current.next;
+		}
+		current.next = null;
+	}
 
 	/**
 	 * gibt den String aus der Liste zurueck, der mit String anfaengt
 	 */
 	String getPrefix(String searchfor){
 		StringNode current = firstNode;
+		while( !current.content.contains(searchfor) ) {
+			current = current.next;
+		}
 		return searchfor;
 	}
 	
 	/**
 	 * gibt den n. String der Liste aus, falls der String nicht gefunden wird, gib null zurueck
 	 */
-	String getNth(int pos){
-		return null;
+	String getNth(int goalPos){
+		if( goalPos <= 0 || goalPos > this.length() ) {
+			return null;
+		} else {
+			StringNode current = firstNode;
+			int curPos = 0;
+			while(curPos < goalPos) {
+				current = current.next;
+				curPos++;
+			}
+			return current.content;
+		}
 	}
 	
 	/**
 	 * gibt den n. String der Liste aus, falls der String nicht gefunden wird, gib String zurueck
 	 */
-	String getNthOr(int pos, String emergency){
-		return emergency;
+	String getNthOr(int goalPos, String ifNotFound){
+		if( goalPos <= 0 || goalPos > this.length() ) {
+			return ifNotFound;
+		} else { 
+			StringNode current = firstNode;
+			int curPos = 0;
+			while(curPos < goalPos) {
+				current = current.next;
+				curPos++;
+			}
+			return current.content;
+		}
 	}
 
 }
+
