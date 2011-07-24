@@ -4,7 +4,10 @@ Moin!
 
 Heute gibt's die List Class.
 
-Step 1 Eine StringList Klasse, die als Inhalt einen String verwaltet. Die Klasse hat drei Konstruktoren: der eine erzeugt eine leere StringList der zweite Konstruktor hat einen String als Paramater, der dann als alleiniges Element in der Liste steht. Der dritte Konstruktor wird nur für das Messen von Zeiten benoetigt. Er erhält eine Zahl als Parameter und erzeugt eine Liste mit dieser Länge. Die String werden mit der Position als String befüllt - der 5. String in der Liste lautet also "5".
+
+
+Step 1
+Eine StringList Klasse, die als Inhalt einen String verwaltet. Die Klasse hat drei Konstruktoren: der eine erzeugt eine leere StringList der zweite Konstruktor hat einen String als Paramater, der dann als alleiniges Element in der Liste steht. Der dritte Konstruktor wird nur für das Messen von Zeiten benoetigt. Er erhält eine Zahl als Parameter und erzeugt eine Liste mit dieser Länge. Die String werden mit der Position als String befüllt - der 5. String in der Liste lautet also "5".
 
 Die Klasse hat folgende Methoden:
 
@@ -27,59 +30,75 @@ getNthOr(int,String) ... nicht gefunden wird, gib String zurueck
 Diskussion:
 
 Die einfachste Methode eine Liste zu schreiben ist, eine Hilfsklasse einzuführen: StringNode. Diese Hilfsklasse hat gar keine Methoden, sondern nur zwei Felder, das erste zeigt auf die nächste StringNode, das zweite ist der String. Gibt es kein nächstes Feld, dann ist das erste Feld 'null'.
-
 In der StringList Klasse hat man dann nur ein DatenFeld vom Typ StringNode. Ist die Liste leer ist dies 'null'. Ansonsten enthält es das erste Element.
+
+
 
 Step 2 Verifikation
 
 Aber ist das was Ihr da programmiert habt überhaupt eine Liste? Eine Liste hat im Gegensatz zum Array die folgenden Eigenschaften:
-
 * mindestens eine der beiden Add* Funktionen braucht konstante Zeit, d.h. es ist egal ob die Liste ein oder eine Millionen Element hat. 
 * getNth braucht um so länger je höher der Index ist. 
 
 Schreibt ein Programm, dass die Zeit ausliest und dann auf einer kurzen oder sehr langen Liste ein (oder mehrere, wenn die Zeit sonst zu kurz ist) Element hinzufügt, bzw. das letzte Element der Liste mit getNth aus liest. 
 
+
+
 Step 3 Rekursion
 
 Alle Listenfunktion können entweder mit einer for Schleife oder rekursiv geschrieben werden. Die for Schleifen sind haesslich, schreibt das ganze Rekursiv. Falls Eure Lösung aus Step 1 iterative Elemente beinhaltet, dann schreibt eine Neue Klasse StringListR, die rein rekursiv ist.
 
+
+
 Step 4 Single Class
 
 Wenn man das ganze schon rekursiv schreibt, dann kann man auch auf die Hilfsklasse gleich verzichten. Eine StringList hat dann selbst zwei Elemente: das erste ist selbst wieder eine StringList, das zweite ist der String. 
+
+
 
 Step 5 Iteratoren
 
 Man kann prinzipiell mit getNth über die Liste iterieren: Schreib eine einfache Funktion (keine Methode der StringKlasse, wenn ich Funktion sage meine ich einestatische Methode von Eurer Hauptklasse, die auch das main beinhaltet.) Also schreibt eine einfache Funktion namens find(StringList,String), die mit getNth einen bestimmten String in der Liste sucht. Dann ruft die Funktion mit einer Reihe von Listen auf: 1, 10, 100, 1000 etc Elementen in der Liste. Dann messt die Zeiten und erklärt mir warum das so langsam wird.
 
 Es muss also eine schnellere Methode geben über eine Liste zu iterieren. Dafür führt man eine public Hilfsklasse namens StringIterator ein. Die StringList hat eine Methode 'getIterator' die genau so einen Iterator zurückgibt. Der StringIterator hat drei Methoden:
-
 * next => geht zum nächsten Element
 * getString => gibt den String zurück der gerade vom Iterator adressiert wird. Bei einem frisch erzeugten Iterator ist dies das erste Element. Ruft man danach zweimal next auf dann erhält man mit getString das dritte Element der Liste.
 * end => true, wenn man mit next nicht mehr weiter gehen kann, weil man am Ende der Liste angekommen ist.
 
 Dann kann man den Inhalt einer Liste folgendermassen ausgeben:
-
 for (StringIterator i=myList.getIterator();!i.end();i.next()) println(i.getString);
+
+
 
 Step 6 Iteratore benchmarken
 
 Wie lange dauert der Iterator? Er sollte mit linear mit der Laenge der Liste Zeit verbrauchen. Also wenn die Liste doppelt so lang ist, dann dauert es auch doppelt so lange über sie zu iterieren. Also schreibt die Funktion find(StringList,String) aus Step 6 mit einem StringIterator. Messt wieder die Zeiten für 1,10,100 etc. Elemente in einer Liste. 
 
+
+
 Step 7 Single Class Iteratoren.
 
 Aber warum muss der Iterator eine andere Klasse sein als die Liste selbst? erweitert die Loesung aus Step 4 um die Methoden des Iterators.
+
+
 
 Step 8 Schnelle Laenge
 
 das length() in einer naiv programmierten Liste umso länger dauert je länger die Liste ist, nervt. Also merkt man sich die Laenge in einem weiteren Feld der Liste. Das geht mit der 2 Klassenlösung (StringList/StringNode) sehr leicht, mit der SingleClass Lösung (Step 4/7) ist das aber erstaunlich schwierig. 
 
+
+
 Step 9 Double Linked List
 
 Was aber tut man wenn man rückwärts durch eine Liste iterieren will? Spätestens jetzt wird die Single Class Lösung unhandlich. Also bohrt die StringNode so auf, dass sie ein Feld für das nächste und ein Feld für den Vorgänger in der Liste beinhaltet. Schreibt dann eine Methode getBackwardIterator, die einen BackwardStringIterator zurueckgibt. Gebt eine Liste der Zahen 1..100 vorwärts und dann rückwärts aus.
 
+
+
 Step 10 Fast Double Linked List
 
 Wenn man double linked lists hat, kann man auch garantieren, dass beide add Methoden - addFront und addEnd - in konstanter Zeit funktionieren. Genauso delFirst und delLast.
+
+
 
 Step 11 Generic Lists
 
