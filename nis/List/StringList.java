@@ -1,3 +1,6 @@
+/**
+* @author Nis Meinert
+*/
 public class StringList {
 	private int length;
 
