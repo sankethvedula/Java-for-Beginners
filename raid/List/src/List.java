@@ -1,4 +1,8 @@
 
-public class List {
-	
+public abstract class List {
+
+	void main(){
+		
+	}
+
 }
