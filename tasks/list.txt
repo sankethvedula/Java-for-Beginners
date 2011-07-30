@@ -58,7 +58,7 @@ Wenn man das ganze schon rekursiv schreibt, dann kann man auch auf die Hilfsklas
 
 Step 5 Iteratoren
 
-Man kann prinzipiell mit getNth über die Liste iterieren: Schreib eine einfache Funktion (keine Methode der StringKlasse, wenn ich Funktion sage meine ich einestatische Methode von Eurer Hauptklasse, die auch das main beinhaltet.) Also schreibt eine einfache Funktion namens find(StringList,String), die mit getNth einen bestimmten String in der Liste sucht. Dann ruft die Funktion mit einer Reihe von Listen auf: 1, 10, 100, 1000 etc Elementen in der Liste. Dann messt die Zeiten und erklärt mir warum das so langsam wird.
+Man kann prinzipiell mit getNth über die Liste iterieren: Schreib eine einfache Funktion (keine Methode der StringKlasse, wenn ich Funktion sage meine ich eine statische Methode von Eurer Hauptklasse, die auch das main beinhaltet.) Also schreibt eine einfache Funktion namens find(StringList,String), die mit getNth einen bestimmten String in der Liste sucht. Dann ruft die Funktion mit einer Reihe von Listen auf: 1, 10, 100, 1000 etc Elementen in der Liste. Dann messt die Zeiten und erklärt mir warum das so langsam wird.
 
 Es muss also eine schnellere Methode geben über eine Liste zu iterieren. Dafür führt man eine public Hilfsklasse namens StringIterator ein. Die StringList hat eine Methode 'getIterator' die genau so einen Iterator zurückgibt. Der StringIterator hat drei Methoden:
 * next => geht zum nächsten Element

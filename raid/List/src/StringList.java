@@ -205,5 +205,11 @@ public class StringList {
 		return current;
 	}
 	
+	boolean isEmpty() {
+		if(begin == null)
+			return true;	// tut das?
+		return false;
+	}
+	
 }
 
